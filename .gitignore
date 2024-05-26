@@ -20,6 +20,7 @@ static/
 # Environnement virtuel
 venv/
 *.env
+.env
 
 # Fichiers de configuration locaux
 *.bak
