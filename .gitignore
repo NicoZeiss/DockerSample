@@ -19,8 +19,8 @@ static/
 
 # Environnement virtuel
 venv/
-*.env
-.env
+.env.prod
+.env.prod.db
 
 # Fichiers de configuration locaux
 *.bak
