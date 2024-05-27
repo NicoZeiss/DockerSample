@@ -1,20 +1,27 @@
 FROM python:3.11.9-slim-bullseye
 
-WORKDIR /usr/src/app
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+
+RUN mkdir -p $HOME
+RUN mkdir -p $APP_HOME
+RUN mkdir -p $APP_HOME/staticfiles
+
+RUN addgroup --system app && adduser --system --group app
+
+WORKDIR $APP_HOME
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apt update && apt install -y netcat
+RUN apt update
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+COPY . $APP_HOME
 
-COPY . .
+RUN chown -R app:app $APP_HOME
 
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+USER app
