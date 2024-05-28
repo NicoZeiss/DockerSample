@@ -6,6 +6,7 @@ ENV APP_HOME=/home/app/web
 RUN mkdir -p $HOME
 RUN mkdir -p $APP_HOME
 RUN mkdir -p $APP_HOME/staticfiles
+RUN mkdir -p $APP_HOME/mediafiles
 
 RUN addgroup --system app && adduser --system --group app
 
