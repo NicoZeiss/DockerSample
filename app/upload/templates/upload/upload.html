@@ -1,5 +1,12 @@
-{% block content %}
-
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'upload/css/style.css' %}">
+</head>
+<body>
   <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="image_file">
@@ -9,5 +16,5 @@
   {% if image_url %}
     <p>File uploaded at: <a href="{{ image_url }}">{{ image_url }}</a></p>
   {% endif %}
-
-{% endblock %}
+</body>
+</html>
